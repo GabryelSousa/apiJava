@@ -65,7 +65,7 @@ public class PersonagemController {
     private Boolean validarCasa(String idCasa){
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
-        headers.set("apiKey", "ac1a66d8-0cbd-4882-bffa-69389d285aea");
+        headers.set("apiKey", api_key);
 
         HttpEntity entity = new HttpEntity(headers);
         Long resultado = new Long(0);
