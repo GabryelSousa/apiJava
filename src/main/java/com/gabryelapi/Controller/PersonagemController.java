@@ -10,6 +10,7 @@ import com.gabryelapi.model.Resposta;
 import com.gabryelapi.repository.PersonagemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -22,6 +23,8 @@ import java.util.List;
 @RequestMapping("/api")
 @JsonIgnoreProperties
 public class PersonagemController {
+    @Value("${api_key}") private String api_key;
+    
     @Autowired
     private PersonagemRepository personagemRepository;
 
@@ -40,7 +43,7 @@ public class PersonagemController {
     public ResponseEntity cadastrar(@RequestBody Personagem personagem){
         if (!this.validarCasa(personagem.getHouse())) {
             Resposta resposta = new Resposta();
-            resposta.setMensagem("Casa informada inválida!");
+            resposta.setMensagem("Casa informada não encontrada ou chave de acesso inválida!");
 
             return new ResponseEntity<Resposta>(resposta, HttpStatus.NOT_FOUND);
         }
